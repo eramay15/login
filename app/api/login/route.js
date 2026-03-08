@@ -1,24 +1,34 @@
 import db from "@/lib/db";
 
-export async function POST(req){
+export async function POST(req) {
 
-const {email,password} = await req.json();
+  const { email, password } = await req.json();
 
-const [rows] = await db.query(
-"SELECT * FROM users WHERE email=?",
-[email]
-);
+  try {
 
-if(rows.length === 0){
-return Response.json({message:"User not found"});
-}
+    const result = await db.query(
+      "SELECT * FROM users WHERE email=$1",
+      [email]
+    );
 
-const user = rows[0];
+    if (result.rows.length === 0) {
+      return Response.json({ message: "User not found" });
+    }
 
-if(password !== user.password){
-return Response.json({message:"Wrong password"});
-}
+    const user = result.rows[0];
 
-return Response.json({message:"Login Successful"});
+    if (password !== user.password) {
+      return Response.json({ message: "Wrong password" });
+    }
+
+    return Response.json({ message: "Login Successful" });
+
+  } catch (error) {
+
+    console.log(error);
+
+    return Response.json({ message: "Database error" });
+
+  }
 
 }

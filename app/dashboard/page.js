@@ -1,12 +1,14 @@
-export default function Dashboard() {
+export default function Dashboard(){
 
-  return (
-    <div style={{padding:"40px"}}>
+return(
 
-      <h1>Dashboard</h1>
-      <p>Login Successful!</p>
+<div style={{padding:"40px"}}>
 
-    </div>
-  );
+<h1>Dashboard</h1>
+<p>Login Successful!</p>
+
+</div>
+
+);
 
 }

@@ -11,7 +11,7 @@ export default function LoginPage() {
   const [password,setPassword] = useState("");
   const [message,setMessage] = useState("");
 
-  const login = async (e:any) => {
+  const handleLogin = async (e:any) => {
 
     e.preventDefault();
 
@@ -39,11 +39,12 @@ export default function LoginPage() {
 
       <h2>Login Form</h2>
 
-      <form onSubmit={login}>
+      <form onSubmit={handleLogin}>
 
         <input
         type="email"
         placeholder="Email"
+        required
         onChange={(e)=>setEmail(e.target.value)}
         />
 
@@ -52,12 +53,13 @@ export default function LoginPage() {
         <input
         type="password"
         placeholder="Password"
+        required
         onChange={(e)=>setPassword(e.target.value)}
         />
 
         <br/><br/>
 
-        <button>Login</button>
+        <button type="submit">Login</button>
 
       </form>
 
