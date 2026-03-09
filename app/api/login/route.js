@@ -11,24 +11,22 @@ export async function POST(req) {
       [email]
     );
 
-    if (result.rows.length === 0) {
-      return Response.json({ message: "User not found" });
+    if(result.rows.length === 0){
+      return Response.json({message:"User not found"});
     }
 
     const user = result.rows[0];
 
-    if (password !== user.password) {
-      return Response.json({ message: "Wrong password" });
+    if(password !== user.password){
+      return Response.json({message:"Wrong password"});
     }
 
-    return Response.json({ message: "Login Successful" });
+    return Response.json({message:"Login Successful"});
 
-  } catch (error) {
+  } catch(error){
 
     console.log(error);
 
-    return Response.json({ message: "Database error" });
-
+    return Response.json({message:"Database error"});
   }
-
 }
