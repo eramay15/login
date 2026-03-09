@@ -25,8 +25,13 @@ export async function POST(req) {
 
   } catch(error){
 
-    console.log(error);
+    console.log("DATABASE ERROR:", error);
 
-    return Response.json({message:"Database error"});
+    return Response.json({
+      message:"Database error",
+      error: error.message
+    });
+
   }
+
 }
